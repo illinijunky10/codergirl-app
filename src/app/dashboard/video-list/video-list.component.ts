@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpBackend } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
+const API_URL = 'https://api.angularbootcamp.com/videos';
+
+interface Video {
+    title: string;
+    author: string;
+}
 
 @Component({
   selector: 'cg-video-list',
@@ -7,5 +16,11 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class VideoListComponent {
+  videoList: Video[] = [];
 
+  constructor(http: HttpClient) {
+    http
+      .get<Video[]>(API_URL)
+      .subscribe(videoList => this.videoList = videoList);
+  }
 }
