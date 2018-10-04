@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpBackend } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
-const API_URL = 'https://api.angularbootcamp.com/videos';
+const API_URL = 'https://api.angularbootcamp.com';
 
 interface Video {
     title: string;
@@ -20,7 +20,7 @@ export class VideoListComponent {
 
   constructor(http: HttpClient) {
     http
-      .get<Video[]>(API_URL)
+      .get<Video[]>(API_URL + '/videos')
       .subscribe(videoList => this.videoList = videoList);
   }
 }
